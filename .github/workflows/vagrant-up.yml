@@ -1,0 +1,28 @@
+name: vagrant-up
+
+on: [push]
+
+jobs:
+  setup:
+    runs-on: macos-10.15
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Vagrant boxes
+      uses: actions/cache@v2
+      with:
+        path: ~/.vagrant.d/boxes
+        key: ${{ runner.os }}-vagrant-${{ hashFiles('Vagrantfile') }}
+        restore-keys: |
+          ${{ runner.os }}-vagrant-
+  melodic-bionic:
+    runs-on: macos-10.15
+    needs: setup
+    steps:
+    - name: Run vagrant up
+      run: vagrant up
+      working-directory: ./melodic-bionic
+    - name: ssh into box after boot
+      run: vagrant ssh -c "echo 'hello world!'"
+      working-directory: ./melodic-bionic

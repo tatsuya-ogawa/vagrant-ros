@@ -8,7 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
+    - name: Install vagrant
+      run: brew install vagrant && vagrant plugin install vagrant-xhyve
     - name: Cache Vagrant boxes
       uses: actions/cache@v2
       with:
@@ -21,7 +22,7 @@ jobs:
     needs: setup
     steps:
     - name: Run vagrant up
-      run: vagrant up
+      run: vagrant up --provider=xhyve
       working-directory: ./melodic-bionic
     - name: ssh into box after boot
       run: vagrant ssh -c "echo 'hello world!'"

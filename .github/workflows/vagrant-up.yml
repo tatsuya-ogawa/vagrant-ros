@@ -18,7 +18,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-vagrant-
     - name: Run vagrant up
-      run: vagrant upe
+      run: vagrant up
       working-directory: ./melodic-bionic
     - name: ssh into box after boot
       run: vagrant ssh -c "echo 'hello world!'"

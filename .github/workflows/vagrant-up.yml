@@ -5,6 +5,7 @@ on: [push]
 jobs:
   setup:
     strategy:
+      fail-fast: false
       matrix:
         distributions: [melodic-bionic , noetic-focal]
     runs-on: macos-10.15

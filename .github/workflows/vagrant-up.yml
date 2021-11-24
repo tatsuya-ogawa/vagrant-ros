@@ -25,19 +25,19 @@ jobs:
           ${{ runner.os }}-vagrant-
     - name: Run vagrant up
       run: vagrant up
-      working-directory: ./${{matrix.distributions}}
+      working-directory: ./environments/${{matrix.distributions}}
     - name: ssh into box after boot
       run: vagrant ssh -c "echo 'hello world!'"
-      working-directory: ./${{matrix.distributions}}
+      working-directory: ./environments/${{matrix.distributions}}
     # - name: vagrant halt
     #   run: vagrant halt
-    #   working-directory: ./${{matrix.distributions}}
+    #   working-directory: ./environments/${{matrix.distributions}}
     - name: vagrant login
       run: vagrant cloud auth login --token ${{secrets.VAGRANT_ACCESS_TOKEN}}
     - name: package
       run: vagrant package
-      working-directory: ./${{matrix.distributions}}
+      working-directory: ./environments/${{matrix.distributions}}
     - name: vagrant upload
       #run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox $GITHUB_RUN_ID package.box
       run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox 0.0.1 package.box
-      working-directory: ./${{matrix.distributions}}
+      working-directory: ./environments/${{matrix.distributions}}

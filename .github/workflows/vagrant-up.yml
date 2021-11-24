@@ -3,7 +3,8 @@ name: vagrant-up
 on: [push]
 
 jobs:
-  setup:
+  ros:
+    timeout-minutes: 90
     strategy:
       fail-fast: false
       matrix:

@@ -80,7 +80,6 @@ Vagrant.configure("2") do |config|
     source ~/.bashrc
     sudo rosdep init
     rosdep update
-    sudo reboot
   SHELL
   config.vm.provision "shell" do |s|
     s.inline = base_shell

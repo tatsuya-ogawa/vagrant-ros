@@ -40,6 +40,8 @@ jobs:
       working-directory: ./${{matrix.distributions}}
     - name: vagrant box create
       run: vagrant cloud box create --short-description "Vagrant ROS Image" togawa83/${{matrix.distributions}} || echo already exists
+    - name: vagrant provider create
+      run: vagrant cloud provider create togawa83/${{matrix.distributions}} virtualbox $GITHUB_RUN_ID || echo already exists
     - name: vagrant upload
       run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox $GITHUB_RUN_ID package.box
       working-directory: ./${{matrix.distributions}}

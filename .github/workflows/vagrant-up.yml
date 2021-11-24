@@ -6,8 +6,7 @@ jobs:
   setup:
     strategy:
       matrix:
-        # distributions: [melodic-bionic , noetic-focal]
-        distributions: [ melodic-bionic ]
+        distributions: [melodic-bionic , noetic-focal]
     runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v2

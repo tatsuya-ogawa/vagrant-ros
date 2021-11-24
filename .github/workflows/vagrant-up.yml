@@ -4,8 +4,10 @@ on: [push]
 
 jobs:
   setup:
+    strategy:
+      matrix:
+        distributions: [melodic-bionic]
     runs-on: macos-10.15
-
     steps:
     - uses: actions/checkout@v2
     - name: Install vagrant
@@ -19,7 +21,7 @@ jobs:
           ${{ runner.os }}-vagrant-
     - name: Run vagrant up
       run: vagrant up
-      working-directory: ./melodic-bionic
+      working-directory: ./${{matrix.distributions}}
     - name: ssh into box after boot
       run: vagrant ssh -c "echo 'hello world!'"
-      working-directory: ./melodic-bionic
+      working-directory: ./${{matrix.distributions}}

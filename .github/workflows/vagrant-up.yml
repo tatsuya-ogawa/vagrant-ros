@@ -38,7 +38,11 @@ jobs:
     - name: package
       run: vagrant package
       working-directory: ./distributions/${{matrix.distributions}}
-    - name: vagrant upload
+    - name: vagrant upload(virtualbox)
       #run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox $GITHUB_RUN_ID package.box
       run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox 0.0.1 package.box
+      working-directory: ./distributions/${{matrix.distributions}}
+    - name: vagrant upload(parallels)
+      #run: vagrant cloud provider upload togawa83/${{matrix.distributions}} virtualbox $GITHUB_RUN_ID package.box
+      run: vagrant cloud provider upload togawa83/${{matrix.distributions}} parallels 0.0.1 package.box
       working-directory: ./distributions/${{matrix.distributions}}
